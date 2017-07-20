@@ -58,5 +58,6 @@
         "ethernet0.wakeOnPcktRcv": "FALSE",
         "ethernet0.pciSlotNumber": "192"
     }
+	}
   ]
 }
