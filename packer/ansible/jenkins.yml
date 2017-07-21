@@ -1,0 +1,6 @@
+---
+- name: Jenkins CI Server
+  hosts: local
+  sudo: no
+  roles:
+    - jenkins

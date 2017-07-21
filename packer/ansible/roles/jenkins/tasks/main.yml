@@ -1,0 +1,8 @@
+---
+- name: jenkins container
+  docker_image:
+    name: jenkins
+    repository: jenkins
+    tag: latest
+    state: present
+  sudo: yes

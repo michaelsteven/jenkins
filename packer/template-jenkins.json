@@ -1,0 +1,78 @@
+{
+  "variables": {
+    "version": "7.1.2.0",
+    "iso_url": "http://cloud.centos.org/centos/7/atomic/images/CentOS-Atomic-Host-7.1706-Installer.iso",
+    "iso_checksum": "e15dded673f21e094ecc13d498bf9d3f8cf8653282cd1c83e5d163ce47bc5c4f",
+    "iso_checksum_type": "sha256",
+    "vbox_guest_os": "RedHat_64",
+    "arch": "x64",
+    "memory": "16384",
+    "cpus": "2",
+    "disk": "100000",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "hostname": "jenkins",
+    "configuration": "minimal",
+    "kickstart": "atomic.ks"
+  },
+  "builders": [
+    {
+	"type": "vmware-iso",
+	"format": "ova",
+	"name": "{{user `build_name`}}",
+	"vm_name": "{{user `vm_name`}}",
+	"remote_type": "esx5",
+	"remote_host": "{{user `esxi_host`}}",
+	"remote_datastore": "{{user `esxi_datastore`}}",
+	"remote_username": "root",
+	"remote_password": "{{user `esxi_password`}}",
+	"ovftool_options":"--shaAlgorithm=sha1",
+	"disk_type_id": "thin",
+    "guest_os_type": "linux",
+    "iso_url": "{{user `iso_url`}}",
+    "iso_checksum": "{{user `iso_checksum`}}",
+    "iso_checksum_type": "{{user `iso_checksum_type`}}",
+    "disk_size" : "{{user `disk`}}",
+    "http_directory": "",
+    "boot_command": [
+      "<tab> text ks=https://raw.githubusercontent.com/michaelsteven/jenkins/master/packer/www/atomic.ks<enter><wait>"
+    ],
+    "boot_wait": "10s",
+    "ssh_username": "{{user `ssh_username`}}",
+    "ssh_password": "{{user `ssh_password`}}",
+    "ssh_port": 22,
+    "ssh_wait_timeout": "10000s",
+    "tools_upload_flavor": "linux",
+    "tools_upload_path": "/tmp/{{.Flavor}}.iso",
+    "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo '{{user `ssh_password`}}'|sudo -S sh '/tmp/shutdown.sh'",
+    "vmx_data": {
+        "memsize": "{{user `memory`}}",
+        "numvcpus": "{{user `cpus`}}",
+        "cpuid.coresPerSocket": "1",
+        "ethernet0.present": "TRUE",
+        "ethernet0.startConnected": "TRUE",
+        "ethernet0.virtualDev": "e1000",
+        "ethernet0.networkName": "VLAN 1231",
+        "ethernet0.addressType": "generated",
+        "ethernet0.generatedAddressOffset": "0",
+        "ethernet0.wakeOnPcktRcv": "FALSE",
+        "ethernet0.pciSlotNumber": "192"
+    }
+	}
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "inline": [
+        "echo '%sudo    ALL=(ALL)  NOPASSWD:ALL' >> /etc/sudoers"
+      ]
+    },
+	{
+        "type": "ansible-local",
+        "inventory_groups": "local",
+        "playbook_file": "ansible/jenkins.yml",
+        "playbook_dir": "ansible",
+    }
+  ]
+}
