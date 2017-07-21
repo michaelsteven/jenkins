@@ -71,8 +71,8 @@
 	{
         "type": "ansible-local",
         "inventory_groups": "local",
-        "playbook_file": "jenkins.yml",
-        "playbook_dir": "ansible"
+        "playbook_file": "jenkins/packer/ansible/jenkins.yml",
+        "playbook_dir": "jenkins/packer/ansible"
     }
   ]
 }
