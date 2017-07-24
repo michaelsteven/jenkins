@@ -1,8 +1,7 @@
 ---
 - name: jenkins container
-  docker_image:
+  atomic_image:
     name: jenkins
-    repository: jenkins
-    tag: latest
-    state: present
+    state: latest
+    started: no
   sudo: yes
