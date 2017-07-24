@@ -66,8 +66,14 @@
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
         "echo '%sudo rpm-ostree pkg-add epel-release'"
-      ],
-	  "pause_before":"60s"
+      ]
+    },
+	{
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "inline": [
+        "echo '%sudo reboot'"
+      ]
     },
 	{
       "type": "shell",
@@ -76,6 +82,14 @@
         "echo '%sudo rpm-ostree pkg-add ansible'"
       ],
 	   "pause_before":"60s"
+    },
+	{
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "inline": [
+        "echo '%sudo reboot'"
+      ],
+	  "pause_before":"60s"
     },
 	{
         "type": "ansible-local",
