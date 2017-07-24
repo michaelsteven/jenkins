@@ -65,7 +65,7 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo rpm-ostree pkg-add epel-release"
+        "echo '%sudo rpm-ostree pkg-add epel-release'"
       ],
 	  "pause_before":"60s"
     },
@@ -73,7 +73,7 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo rpm-ostree pkg-add ansible"
+        "echo '%sudo rpm-ostree pkg-add ansible'"
       ],
 	   "pause_before":"60s"
     },
