@@ -90,12 +90,6 @@
         "echo '%sudo reboot'"
       ],
 	  "pause_before":"60s"
-    },
-	{
-        "type": "ansible-local",
-        "inventory_groups": "local",
-        "playbook_file": "packer/ansible/jenkins.yml",
-        "playbook_dir": "packer/ansible"
     }
   ]
 }
