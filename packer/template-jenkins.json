@@ -61,19 +61,21 @@
 	}
   ],
   "provisioners": [
-    {
+	{
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo    ALL=(ALL)  NOPASSWD:ALL' >> /etc/sudoers"
-      ]
+        "echo '%sudo rpm-ostree pkg-add epel-release"
+      ],
+	  "pause_before":"60s"
     },
 	{
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
         "echo '%sudo rpm-ostree pkg-add ansible"
-      ]
+      ],
+	   "pause_before":"60s"
     },
 	{
         "type": "ansible-local",
