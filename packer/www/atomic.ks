@@ -17,6 +17,10 @@ clearpart --none --initlabel
 reboot
 
 %post --erroronfail
+
+# install the epel-release here to avoid reboot.  Needed for installing ansible
+rpm-ostree pkg-add epel-release
+
 echo "vagrant  ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers.d/vagrant
 fn=/etc/ostree/remotes.d/centos-atomic-host.conf; if test -f ${fn} && grep -q -e '^url=file:///install/ostree' ${fn}$; then rm ${fn}; fi
 # Override udev net-rules
