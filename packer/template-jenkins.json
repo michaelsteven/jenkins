@@ -63,13 +63,16 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "sudo pkg-add ansible'"
-    },
-    {
-      "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
         "echo '%sudo    ALL=(ALL)  NOPASSWD:ALL' >> /etc/sudoers"
+      ]
+    },
+	{
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "inline": [
+        "echo '%sudo rpm-ostree pkg-add ansible"
       ]
     },
 	{
