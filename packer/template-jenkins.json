@@ -65,21 +65,21 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo rpm-ostree pkg-add epel-release'"
+        "sudo rpm-ostree pkg-add epel-release"
       ]
     },
 	{
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo reboot'"
+        "sudo reboot"
       ]
     },
 	{
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo rpm-ostree pkg-add ansible'"
+        "sudo rpm-ostree pkg-add ansible"
       ],
 	   "pause_before":"60s"
     },
@@ -87,7 +87,7 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "echo '%sudo reboot'"
+        "sudo reboot"
       ],
 	  "pause_before":"60s"
     }
