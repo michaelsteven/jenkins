@@ -4,7 +4,7 @@ ostreesetup --osname="centos-atomic-host" --remote="centos-atomic-host" --url="f
 # Root password
 rootpw --iscrypted $6$wYsgxOWKg9j24ZvB$U8bDrfTFxBooGiXr3QNivMWeSylu3ODKi8zvpBip1UxlgwWGBrZBpvpwQa3slfM2iKDQ2smwiJlxHbF1pMzvj1
 # System services
-services --disabled="cloud-init,cloud-config,cloud-final,cloud-init-local"
+services --disabled="cloud-init,cloud-config,cloud-final,cloud-init-local" --enabled="sshd"
 # System timezone
 timezone America/New_York --isUtc
 user --groups=wheel --name=vagrant --password=$6$IJyUUWig26OfFTz8$bQWejOUpOJsGx2fSX9UJwkD4Liqsknk7DEQj4g23/wlVWLDmhVeIcfdRcz7fk1fXMZAEgGgyGkHGOXXL1FwlV1 --iscrypted --gecos="vagrant"
@@ -17,9 +17,6 @@ clearpart --none --initlabel
 reboot
 
 %post --erroronfail
-
-# install the epel-release here to avoid reboot.  Needed for installing ansible
-rpm-ostree pkg-add epel-release
 
 echo "vagrant  ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers.d/vagrant
 fn=/etc/ostree/remotes.d/centos-atomic-host.conf; if test -f ${fn} && grep -q -e '^url=file:///install/ostree' ${fn}$; then rm ${fn}; fi
