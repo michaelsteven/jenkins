@@ -79,8 +79,8 @@
 	{
       "type": "ansible-local",
       "inventory_groups": "local",
-      "playbook_file": "jenkins/jenkins/packer/ansible/openshift.yml",
-      "playbook_dir": "jenkins/jenkins/packer/ansible",
+      "playbook_file": "packer/ansible/openshift.yml",
+      "playbook_dir": "packer/ansible",
 	  "pause_before":"60s"
     }
   ]
