@@ -67,6 +67,21 @@
       "inline": [
         "sudo rpm-ostree pkg-add ansible"
       ]
+    },
+	{
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "inline": [
+        "sudo reboot"
+      ],
+      "pause_before":"60s"
+    },
+	{
+      "type": "ansible-local",
+      "inventory_groups": "local",
+      "playbook_file": "jenkins/packer/ansible/openshift.yml",
+      "playbook_dir": "jenkins/packer/ansible",
+	  "pause_before":"60s"
     }
   ]
 }

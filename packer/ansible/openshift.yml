@@ -1,0 +1,6 @@
+---
+- name: openshift
+  hosts: local
+  sudo: yes
+  roles:
+    - docker-config
