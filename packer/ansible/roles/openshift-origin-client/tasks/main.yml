@@ -1,0 +1,15 @@
+---
+- name: download openshift-origin-client
+  get_url:
+    url: https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
+    dest: /tmp/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
+    checksum: sha256:ecb0f52560ac766331052a0052b1de646011247f637c15063f4d74432e1ce389
+
+- name: unarchive the openshift-origin-client
+  unarchive:
+    src: /tmp/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
+    dest: /tmp
+
+- name: move to bin dir
+  command: mv /tmp/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit/oc /usr/sbin/
+  sudo: true
