@@ -11,7 +11,7 @@
     "disk": "100000",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "hostname": "jenkins",
+    "hostname": "atomic",
     "configuration": "minimal",
     "kickstart": "atomic.ks"
   },
@@ -35,7 +35,7 @@
     "disk_size" : "{{user `disk`}}",
     "http_directory": "",
     "boot_command": [
-      "<tab> text ks=https://raw.githubusercontent.com/michaelsteven/jenkins/master/packer/www/atomic.ks<enter><wait>"
+      "<tab> text ks=https://raw.githubusercontent.com/michaelsteven/jenkins/master/packer/www/centos-atomic.ks<enter><wait>"
     ],
     "boot_wait": "10s",
     "ssh_username": "{{user `ssh_username`}}",
