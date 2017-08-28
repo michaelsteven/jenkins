@@ -2,7 +2,7 @@ install
 reboot
 lang en_US.UTF-8
 keyboard us
-timezone --utc America/Los_Angeles
+timezone --utc America/Chicago
 selinux --enforcing
 zerombr
 clearpart --all --initlabel
@@ -16,13 +16,13 @@ logvol swap --fstype swap --name=lv_swap --vgname=atomicos --size=2048
 services --enabled="systemd-timesyncd" --enabled="sshd"
 ostreesetup --osname="fedora-atomic" --remote="fedora-atomic-26" --url="file:///ostree/repo" --ref="fedora/26/x86_64/atomic-host" --nogpg
 #network --device=link --bootproto=static --ip=192.168.1.101 --netmask=255.255.255.0 --hostname=node1.projectatomic.rocks --gateway=192.168.1.1 --nameserver=192.168.1.100
-rootpw --iscrypted $6$wYsgxOWKg9j24ZvB$U8bDrfTFxBooGiXr3QNivMWeSylu3ODKi8zvpBip1UxlgwWGBrZBpvpwQa3slfM2iKDQ2smwiJlxHbF1pMzvj1
-user --groups=wheel --name=vagrant --password=$6$IJyUUWig26OfFTz8$bQWejOUpOJsGx2fSX9UJwkD4Liqsknk7DEQj4g23/wlVWLDmhVeIcfdRcz7fk1fXMZAEgGgyGkHGOXXL1FwlV1 --iscrypted --gecos="vagrant"
+rootpw --iscrypted $6$iob1rEnM6BTD2v9Z$OgSIy3JZ0.N1c0xO9dIdvqiuyGFistscqneGnaWu6K5e9FftL.QR/V4LVYkLTFx7lZzmEoPIeEev5ZvTHonsU1
+user --groups=wheel --name=devuser --password=$6$Gsw7kxe9ndMW6y.P$qP.n9BUa8.FrOB2RXzdBlGsEB9dSsJ.8q8w7R3UeoJ5xS8omPXRle0r1t63eFPEXDobbx40Rs/2coV0/CGzmB1 --iscrypted --gecos="devuser"
 
 
 %post --erroronfail
 
-echo "vagrant  ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers.d/vagrant
+echo "devuser  ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers.d/devuser
 
 rm -f /etc/ostree/remotes.d/fedora-atomic.conf
 

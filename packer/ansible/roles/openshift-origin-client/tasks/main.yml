@@ -11,5 +11,5 @@
     dest: /tmp
 
 - name: move to bin dir
-  command: mv /tmp/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit/oc /home/vagrant/
+  command: mv /tmp/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit/oc /home/devuser/
   sudo: true

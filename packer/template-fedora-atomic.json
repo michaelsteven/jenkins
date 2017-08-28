@@ -9,8 +9,8 @@
     "memory": "16384",
     "cpus": "2",
     "disk": "100000",
-    "ssh_username": "vagrant",
-    "ssh_password": "vagrant",
+    "ssh_username": "devuser",
+    "ssh_password": "Password123$",
     "hostname": "atomic",
     "configuration": "minimal",
     "kickstart": "atomic.ks"
@@ -65,7 +65,7 @@
       "type": "shell",
       "execute_command": "echo {{user `ssh_password`}} | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "inline": [
-        "sudo rpm-ostree pkg-add ansible"
+        "sudo rpm-ostree pkg-add ansible open-vm-tools"
       ]
     },
 	{
